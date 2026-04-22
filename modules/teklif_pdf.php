@@ -51,6 +51,7 @@ html, body {
   width: 210mm; margin: 24px auto;
   background: #fff; box-shadow: 0 2px 16px rgba(0,0,0,.06);
   padding: 14mm 18mm 12mm; position: relative;
+  border-top: 3pt solid #1b3a6b;
 }
 
 @media print {
@@ -58,23 +59,21 @@ html, body {
   .page {
     margin: 0; box-shadow: none; width: 100%;
     padding: 10mm 15mm 8mm;
+    border-top: 3pt solid #1b3a6b;
   }
   .actions { display: none !important; }
   .note, .bank-block, .signatures, .sum-wrap { page-break-inside: avoid; }
   .hdr, .parties { page-break-after: avoid; }
 }
 
-/* === Üst İnce Çizgi === */
-.top-line {
-  position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(to right, #1b3a6b 0%, #1b3a6b 75%, #2ca69a 75%, #2ca69a 100%);
-}
+/* Top gradient line artık border-top ile yapılıyor — print'e garantili çıkıyor */
+.top-line { display: none; }
 
 /* === HEADER === */
 .hdr {
   display: flex; justify-content: space-between; align-items: center;
   padding-bottom: 14px; margin-bottom: 20px;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1.5pt solid #64748b;
 }
 .hdr-brand { display: flex; align-items: center; gap: 16px; flex: 1; min-width: 0; }
 .hdr-logo { flex-shrink: 0; }
@@ -91,14 +90,14 @@ html, body {
   line-height: 1.3; margin-bottom: 4px;
 }
 .hdr-firma .sub {
-  font-size: 8.5pt; color: #6b7280; line-height: 1.5;
+  font-size: 8.5pt; color: #475569; line-height: 1.5;
 }
 
 .hdr-doc { text-align: right; flex-shrink: 0; margin-left: 20px; }
 .hdr-doc .kind {
-  font-size: 8pt; color: #9ca3af;
+  font-size: 8pt; color: #64748b;
   letter-spacing: 2.5px; text-transform: uppercase;
-  font-weight: 500; margin-bottom: 4px;
+  font-weight: 600; margin-bottom: 4px;
 }
 .hdr-doc .num {
   font-size: 16pt; font-weight: 600; color: #1a1a2e;
@@ -106,11 +105,11 @@ html, body {
   font-variant-numeric: tabular-nums;
 }
 .hdr-doc .dates {
-  margin-top: 10px; font-size: 8.5pt; color: #6b7280;
+  margin-top: 10px; font-size: 8.5pt; color: #475569;
   line-height: 1.6;
 }
-.hdr-doc .dates .lb { color: #9ca3af; margin-right: 4px; }
-.hdr-doc .dates .vl { color: #2d3748; font-weight: 500; }
+.hdr-doc .dates .lb { color: #64748b; margin-right: 4px; }
+.hdr-doc .dates .vl { color: #1a1a2e; font-weight: 600; }
 
 /* === Taraflar === */
 .parties {
@@ -119,34 +118,35 @@ html, body {
 }
 .party-card { font-size: 9.5pt; }
 .party-card .hd {
-  font-size: 7.5pt; font-weight: 600; color: #2ca69a;
+  font-size: 7.5pt; font-weight: 700; color: #1b3a6b;
   letter-spacing: 2px; text-transform: uppercase;
   margin-bottom: 8px; padding-bottom: 6px;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1pt solid #94a3b8;
 }
 .party-card .firma-ad {
   font-size: 11.5pt; font-weight: 600; color: #1a1a2e;
   margin-bottom: 6px; line-height: 1.35;
 }
 .party-card .line {
-  font-size: 9pt; color: #4b5563; line-height: 1.6;
+  font-size: 9pt; color: #334155; line-height: 1.6;
 }
 .party-card .line .lb {
-  color: #9ca3af; display: inline-block; min-width: 52px;
-  font-size: 8.5pt;
+  color: #64748b; display: inline-block; min-width: 52px;
+  font-size: 8.5pt; font-weight: 600;
 }
 
 /* === Teklif Meta (ince satır) === */
 .meta-strip {
   display: flex; gap: 24px; margin-bottom: 14px;
-  padding: 8px 0; border-top: 1px solid #f3f4f6;
-  border-bottom: 1px solid #f3f4f6;
+  padding: 8px 0;
+  border-top: 0.75pt solid #94a3b8;
+  border-bottom: 0.75pt solid #94a3b8;
   font-size: 9pt;
 }
 .meta-strip .item .lb {
-  color: #9ca3af; font-size: 8pt;
+  color: #64748b; font-size: 8pt;
   text-transform: uppercase; letter-spacing: 1px;
-  margin-right: 6px;
+  margin-right: 6px; font-weight: 600;
 }
 .meta-strip .item .vl {
   color: #1a1a2e; font-weight: 600;
@@ -158,12 +158,12 @@ html, body {
   margin-bottom: 14px; font-size: 9.5pt;
 }
 .items thead th {
-  padding: 10px 10px 10px 0;
+  padding: 9px 10px 9px 0;
   text-align: left;
-  font-size: 7.5pt; font-weight: 600;
-  color: #9ca3af; letter-spacing: 1.5px;
+  font-size: 7.5pt; font-weight: 700;
+  color: #475569; letter-spacing: 1.5px;
   text-transform: uppercase;
-  border-bottom: 1px solid #d1d5db;
+  border-bottom: 1pt solid #64748b;
   background: none;
 }
 .items thead th.num { text-align: right; padding-right: 0; padding-left: 10px; }
@@ -172,14 +172,14 @@ html, body {
 
 .items tbody td {
   padding: 8px 10px 8px 0; vertical-align: top;
-  border-bottom: 1px solid #f3f4f6;
+  border-bottom: 0.5pt solid #94a3b8;
 }
 .items tbody td:first-child { padding-left: 4px; }
 .items tbody td:last-child { padding-right: 4px; }
-.items tbody tr:last-child td { border-bottom: 1px solid #e5e7eb; }
+.items tbody tr:last-child td { border-bottom: 1pt solid #475569; }
 
 .items .sira {
-  color: #cbd5e1; font-weight: 600; font-size: 9pt;
+  color: #94a3b8; font-weight: 600; font-size: 9pt;
   font-variant-numeric: tabular-nums;
 }
 .items .urun {
@@ -187,13 +187,14 @@ html, body {
   line-height: 1.4;
 }
 .items .aciklama {
-  font-size: 8.5pt; color: #6b7280;
+  font-size: 8.5pt; color: #475569;
   line-height: 1.5; margin-top: 2px;
 }
 .items td.num {
   text-align: right; white-space: nowrap;
   font-variant-numeric: tabular-nums;
   padding-left: 10px; padding-right: 0;
+  color: #334155;
 }
 .items td.tutar { font-weight: 600; color: #1a1a2e; }
 
@@ -207,75 +208,74 @@ html, body {
 .sum td {
   padding: 3px 0; font-size: 10pt; vertical-align: middle;
 }
-.sum td.lb { color: #6b7280; padding-right: 24px; }
+.sum td.lb { color: #475569; padding-right: 24px; }
 .sum td.vl {
   text-align: right; color: #1a1a2e;
   font-variant-numeric: tabular-nums;
 }
 
 .sum tr.kdv-satir td {
-  font-size: 9pt; color: #6b7280; padding: 3px 0;
+  font-size: 9pt; color: #475569; padding: 3px 0;
 }
 .sum tr.kdv-satir td.lb { padding-left: 14px; }
 .sum tr.kdv-matrah td {
-  font-size: 7.5pt; color: #9ca3af;
+  font-size: 7.5pt; color: #64748b;
   padding: 0 0 3px 14px; font-style: italic;
 }
 
 .sum tr.kdv-total td {
-  font-size: 10pt; font-weight: 500; color: #4b5563;
-  padding-top: 3px;
-  border-top: 1px solid #f3f4f6;
+  font-size: 10pt; font-weight: 600; color: #334155;
+  padding-top: 4px;
+  border-top: 0.5pt solid #94a3b8;
 }
 
 .sum tr.spacer td { padding: 5px 0; }
 
 .sum tr.grand td {
-  font-size: 13pt; font-weight: 600;
+  font-size: 13pt; font-weight: 700;
   color: #1b3a6b; padding: 9px 0 3px;
-  border-top: 2px solid #1b3a6b;
-  border-bottom: 1px solid #1b3a6b;
+  border-top: 2pt solid #1b3a6b;
+  border-bottom: 1pt solid #1b3a6b;
   padding-bottom: 9px;
 }
 .sum tr.grand td.lb {
   letter-spacing: 1.5px; text-transform: uppercase;
-  font-size: 9pt; color: #1b3a6b; font-weight: 600;
+  font-size: 9pt; color: #1b3a6b; font-weight: 700;
 }
 .sum tr.grand td.vl { font-size: 14pt; }
 
 /* === Notlar / Şartlar === */
 .note {
   margin-bottom: 10px; padding-left: 12px;
-  border-left: 2px solid #e5e7eb;
-  font-size: 9pt; line-height: 1.6; color: #4b5563;
+  border-left: 2pt solid #94a3b8;
+  font-size: 9pt; line-height: 1.6; color: #334155;
 }
 .note .hd {
-  font-size: 7.5pt; font-weight: 600; color: #2ca69a;
+  font-size: 7.5pt; font-weight: 700; color: #1b3a6b;
   letter-spacing: 2px; text-transform: uppercase;
   margin-bottom: 4px;
 }
-.note.terms { border-left-color: #cbd5e1; }
-.note.terms .hd { color: #1b3a6b; }
+.note.terms { border-left-color: #1b3a6b; }
 
 /* === Banka === */
 .bank-block {
   margin: 12px 0 6px; padding: 10px 14px;
-  background: #f9fafb; border-radius: 3px;
-  border: 1px solid #f3f4f6;
+  background: #f1f5f9; border-radius: 3px;
+  border: 0.75pt solid #94a3b8;
   font-size: 9pt;
 }
 .bank-block .hd {
-  font-size: 7.5pt; font-weight: 600; color: #1b3a6b;
+  font-size: 7.5pt; font-weight: 700; color: #1b3a6b;
   letter-spacing: 2px; text-transform: uppercase;
   margin-bottom: 7px;
 }
-.bank-row { padding: 5px 0; line-height: 1.55; }
+.bank-row { padding: 5px 0; line-height: 1.55; color: #334155; }
 .bank-row + .bank-row {
-  border-top: 1px dotted #e5e7eb; margin-top: 2px;
+  border-top: 0.5pt solid #cbd5e1; margin-top: 2px;
 }
-.bank-row .banka-ad { font-weight: 600; color: #1a1a2e; font-size: 10pt; }
-.bank-row .sube { color: #6b7280; font-size: 8.5pt; font-weight: normal; }
-.bank-row .lb { color: #9ca3af; font-size: 8.5pt; margin-right: 4px; }
+.bank-row .banka-ad { font-weight: 700; color: #1a1a2e; font-size: 10pt; }
+.bank-row .sube { color: #475569; font-size: 8.5pt; font-weight: normal; }
+.bank-row .lb { color: #64748b; font-size: 8.5pt; margin-right: 4px; font-weight: 600; }
 .bank-row .iban, .bank-row .swift {
   font-family: 'SF Mono', 'Consolas', 'Menlo', monospace;
   font-weight: 600; color: #1b3a6b; letter-spacing: .5px;
@@ -288,22 +288,22 @@ html, body {
 }
 .sig-col {
   text-align: center; padding-top: 6px;
-  border-top: 1px solid #d1d5db;
+  border-top: 1pt solid #475569;
 }
 .sig-col .role {
-  font-size: 7.5pt; color: #9ca3af;
+  font-size: 7.5pt; color: #64748b;
   letter-spacing: 2px; text-transform: uppercase;
-  margin-bottom: 2px;
+  margin-bottom: 2px; font-weight: 600;
 }
 .sig-col .name {
-  font-size: 9.5pt; font-weight: 500; color: #4b5563;
+  font-size: 9.5pt; font-weight: 600; color: #1a1a2e;
 }
 
 /* === Footer === */
 .footer {
   margin-top: 14px; padding-top: 10px;
-  border-top: 1px solid #f3f4f6;
-  text-align: center; font-size: 7.5pt; color: #9ca3af;
+  border-top: 0.5pt solid #94a3b8;
+  text-align: center; font-size: 7.5pt; color: #64748b;
   line-height: 1.55;
 }
 

@@ -1,5 +1,24 @@
 # Değişiklik Günlüğü
 
+## v1.0.9 — 2026-04-22
+
+### Düzeltildi
+- 🖨️ **PDF Yazdırmada Çizgiler Netleşti** — Fiziksel çıktıda sönük görünen çizgiler/borderlar, yazıcı-dostu tonlara çekildi:
+  - Tüm hairline border'ları `pt` birimine çevrildi (ekran px'i yerine yazıcı noktası)
+  - Çok açık griler (#e5e7eb, #f3f4f6) → orta ton griler (#64748b, #94a3b8)
+  - Kalemler tablosu: satır border'ı 0.5pt #94a3b8 — artık net görünür
+  - Meta satır border'ı 0.75pt #94a3b8
+  - Header alt çizgisi 1.5pt #64748b (belirgin ayırıcı)
+  - İmza çizgileri 1pt #475569 (koyu gri — kalemle üzerine imza atılabilir)
+  - Taraf başlıklarının alt hairline'ı 1pt
+  - Bank-block çerçevesi 0.75pt + açık mavi zemin (#f1f5f9 — biraz daha doygun)
+  - Secondary text tonları bir kademe koyulaştı (#9ca3af → #64748b)
+- 🎨 **Üst Gradient Çizgi → Border-top** — Tarayıcılar "Background graphics" kapalıyken yazdırmayı atlıyordu. Artık `border-top: 3pt solid #1b3a6b` — her durumda basıyor.
+- `print-color-adjust: exact` + tüm kritik çizgiler border şeklinde — yazdırma ayarlarından bağımsız tutarlı çıktı.
+
+### Yazdırma önerisi
+Chrome/Edge: Yazdır → **Diğer ayarlar** → **Arka plan grafikleri** ✓ işaretli. Bu açıksa blok arka planları da basılır. Kapalı olsa bile artık kritik çizgiler görünür.
+
 ## v1.0.8 — 2026-04-22
 
 ### Düzeltildi
