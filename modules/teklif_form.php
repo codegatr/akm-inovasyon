@@ -186,7 +186,10 @@ $kdvVars = (float)ayar_get('varsayilan_kdv', '20');
     </div>
     <div class="field">
       <label>Geçerlilik Tarihi</label>
-      <input type="date" name="gecerlilik_tarihi" value="<?= e($t['gecerlilik_tarihi']) ?>">
+      <div class="date-gun-grup">
+        <input type="date" name="gecerlilik_tarihi" id="gecerlilik_tarihi" value="<?= e($t['gecerlilik_tarihi']) ?>">
+        <input type="number" id="gecerlilik_gun" min="0" max="365" placeholder="gün" title="Teklif tarihinden itibaren gün sayısı (örn. 30 = 30 gün sonra)">
+      </div>
     </div>
     <div class="field">
       <label>Durum</label>

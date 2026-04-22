@@ -1,5 +1,15 @@
 # Değişiklik Günlüğü
 
+## v1.0.10 — 2026-04-22
+
+### Eklendi
+- 📅 **Geçerlilik — Gün Sayısı Alanı** — Teklif formunda geçerlilik tarihi yanında küçük bir "gün" input'u eklendi.
+  - Gün yazınca geçerlilik tarihi otomatik hesaplanıyor (teklif tarihi + gün)
+  - Geçerlilik tarihini manuel değiştirirsen gün otomatik yenilenir
+  - Teklif tarihini değiştirirsen mevcut gün sayısıyla geçerlilik tarihi yeniden hesaplanır
+  - UTC bazlı hesap — saat dilimi kayması yok
+  - Form ilk açıldığında zaten kayıtlı geçerlilik tarihi varsa gün alanı otomatik dolar
+
 ## v1.0.9 — 2026-04-22
 
 ### Düzeltildi
