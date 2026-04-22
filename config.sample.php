@@ -33,7 +33,7 @@ define('SESSION_NAME',     'AKMSESSID');
 define('UPDATE_REPO',        'codegatr/akm-inovasyon');
 define('UPDATE_CHECK_URL',   'https://api.github.com/repos/' . UPDATE_REPO . '/releases/latest');
 define('UPDATE_TOKEN',       ''); // Private repo için GitHub Personal Access Token (boş bırakılabilir)
-define('CURRENT_VERSION',    '1.0.6');
+define('CURRENT_VERSION',    '1.0.7');
 
 // --- Debug ---
 define('DEBUG', false);

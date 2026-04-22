@@ -48,16 +48,20 @@ html, body {
 }
 
 .page {
-  width: 210mm; min-height: 297mm; margin: 24px auto;
+  width: 210mm; margin: 24px auto;
   background: #fff; box-shadow: 0 2px 16px rgba(0,0,0,.06);
-  padding: 22mm 20mm 18mm; position: relative;
-  display: flex; flex-direction: column;
+  padding: 14mm 18mm 12mm; position: relative;
 }
 
 @media print {
   html, body { background: #fff; }
-  .page { margin: 0; box-shadow: none; width: 100%; min-height: 100%; }
+  .page {
+    margin: 0; box-shadow: none; width: 100%;
+    padding: 10mm 15mm 8mm;
+  }
   .actions { display: none !important; }
+  .note, .bank-block, .signatures, .sum-wrap { page-break-inside: avoid; }
+  .hdr, .parties { page-break-after: avoid; }
 }
 
 /* === Üst İnce Çizgi === */
@@ -69,7 +73,7 @@ html, body {
 /* === HEADER === */
 .hdr {
   display: flex; justify-content: space-between; align-items: center;
-  padding-bottom: 18px; margin-bottom: 28px;
+  padding-bottom: 14px; margin-bottom: 20px;
   border-bottom: 1px solid #e5e7eb;
 }
 .hdr-brand { display: flex; align-items: center; gap: 16px; flex: 1; min-width: 0; }
@@ -110,8 +114,8 @@ html, body {
 
 /* === Taraflar === */
 .parties {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
-  margin-bottom: 26px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  margin-bottom: 18px;
 }
 .party-card { font-size: 9.5pt; }
 .party-card .hd {
@@ -134,8 +138,8 @@ html, body {
 
 /* === Teklif Meta (ince satır) === */
 .meta-strip {
-  display: flex; gap: 28px; margin-bottom: 22px;
-  padding: 10px 0; border-top: 1px solid #f3f4f6;
+  display: flex; gap: 24px; margin-bottom: 14px;
+  padding: 8px 0; border-top: 1px solid #f3f4f6;
   border-bottom: 1px solid #f3f4f6;
   font-size: 9pt;
 }
@@ -167,7 +171,7 @@ html, body {
 .items thead th:last-child { padding-right: 4px; }
 
 .items tbody td {
-  padding: 11px 10px 11px 0; vertical-align: top;
+  padding: 8px 10px 8px 0; vertical-align: top;
   border-bottom: 1px solid #f3f4f6;
 }
 .items tbody td:first-child { padding-left: 4px; }
@@ -195,13 +199,13 @@ html, body {
 
 /* === Toplamlar === */
 .sum-wrap {
-  display: flex; justify-content: flex-end; margin: 8px 0 24px;
+  display: flex; justify-content: flex-end; margin: 6px 0 16px;
 }
 .sum {
-  min-width: 320px; border-collapse: collapse;
+  min-width: 300px; border-collapse: collapse;
 }
 .sum td {
-  padding: 5px 0; font-size: 10pt; vertical-align: middle;
+  padding: 3px 0; font-size: 10pt; vertical-align: middle;
 }
 .sum td.lb { color: #6b7280; padding-right: 24px; }
 .sum td.vl {
@@ -224,38 +228,38 @@ html, body {
   border-top: 1px solid #f3f4f6;
 }
 
-.sum tr.spacer td { padding: 8px 0; }
+.sum tr.spacer td { padding: 5px 0; }
 
 .sum tr.grand td {
-  font-size: 14pt; font-weight: 600;
-  color: #1b3a6b; padding: 12px 0 4px;
+  font-size: 13pt; font-weight: 600;
+  color: #1b3a6b; padding: 9px 0 3px;
   border-top: 2px solid #1b3a6b;
   border-bottom: 1px solid #1b3a6b;
-  padding-bottom: 12px;
+  padding-bottom: 9px;
 }
 .sum tr.grand td.lb {
   letter-spacing: 1.5px; text-transform: uppercase;
-  font-size: 9.5pt; color: #1b3a6b; font-weight: 600;
+  font-size: 9pt; color: #1b3a6b; font-weight: 600;
 }
-.sum tr.grand td.vl { font-size: 15pt; }
+.sum tr.grand td.vl { font-size: 14pt; }
 
 /* === Notlar / Şartlar === */
 .note {
-  margin-bottom: 16px; padding-left: 14px;
+  margin-bottom: 10px; padding-left: 12px;
   border-left: 2px solid #e5e7eb;
-  font-size: 9pt; line-height: 1.65; color: #4b5563;
+  font-size: 9pt; line-height: 1.6; color: #4b5563;
 }
 .note .hd {
   font-size: 7.5pt; font-weight: 600; color: #2ca69a;
   letter-spacing: 2px; text-transform: uppercase;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 .note.terms { border-left-color: #cbd5e1; }
 .note.terms .hd { color: #1b3a6b; }
 
 /* === Banka === */
 .bank-block {
-  margin: 20px 0 8px; padding: 14px 16px;
+  margin: 12px 0 6px; padding: 10px 14px;
   background: #f9fafb; border-radius: 3px;
   border: 1px solid #f3f4f6;
   font-size: 9pt;
@@ -263,9 +267,9 @@ html, body {
 .bank-block .hd {
   font-size: 7.5pt; font-weight: 600; color: #1b3a6b;
   letter-spacing: 2px; text-transform: uppercase;
-  margin-bottom: 10px;
+  margin-bottom: 7px;
 }
-.bank-row { padding: 7px 0; line-height: 1.6; }
+.bank-row { padding: 5px 0; line-height: 1.55; }
 .bank-row + .bank-row {
   border-top: 1px dotted #e5e7eb; margin-top: 2px;
 }
@@ -279,17 +283,17 @@ html, body {
 
 /* === İmza === */
 .signatures {
-  margin-top: auto; padding-top: 38px;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 50px;
+  margin-top: 28px; padding-top: 0;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
 }
 .sig-col {
-  text-align: center; padding-top: 8px;
+  text-align: center; padding-top: 6px;
   border-top: 1px solid #d1d5db;
 }
 .sig-col .role {
   font-size: 7.5pt; color: #9ca3af;
   letter-spacing: 2px; text-transform: uppercase;
-  margin-bottom: 3px;
+  margin-bottom: 2px;
 }
 .sig-col .name {
   font-size: 9.5pt; font-weight: 500; color: #4b5563;
@@ -297,10 +301,10 @@ html, body {
 
 /* === Footer === */
 .footer {
-  margin-top: 22px; padding-top: 12px;
+  margin-top: 14px; padding-top: 10px;
   border-top: 1px solid #f3f4f6;
   text-align: center; font-size: 7.5pt; color: #9ca3af;
-  line-height: 1.6;
+  line-height: 1.55;
 }
 
 /* === Aksiyonlar === */

@@ -1,5 +1,19 @@
 # Değişiklik Günlüğü
 
+## v1.0.7 — 2026-04-22
+
+### Düzeltildi
+- 📄 **PDF Tek Sayfada Sığıyor** — v1.0.6'da imzaların ikinci sayfaya taşması sorunu giderildi:
+  - Sayfa layout'u `display:flex + margin-top:auto` pattern'inden normal block flow'a geçti
+  - `.page` artık `min-height: 297mm` dayatmıyor — içerik kadar yer kaplıyor
+  - Tüm aralıklar %25-35 sıkılaştı (section margin'ları, tablo row padding, sum spacing)
+  - Sayfa kenar boşlukları: 14mm/18mm/12mm (önceden 22mm/20mm/18mm)
+  - Yazdırma modunda ek olarak 10mm/15mm/8mm'ye iniyor (kağıt sınırlarına yakın)
+  - İmza bloğu artık içerikten hemen sonra geliyor (dibe değil)
+  - `page-break-inside: avoid` kuralları: notlar, banka bloğu, imza, toplam kutusu
+  - GENEL TOPLAM punto biraz küçüldü (14pt → 13pt) — hâlâ belirgin
+- Uzun tekliflerde (50+ kalem) ikinci sayfaya geçerken blok parçalanması engellendi.
+
 ## v1.0.6 — 2026-04-22
 
 ### Değişti
