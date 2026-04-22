@@ -36,16 +36,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['islem'] ?? '') === 'kurulu
             // 1) DB bağlantı
             db();
 
-            // 2) SQL şeması
-            $sql = file_get_contents(__DIR__ . '/sql/install.sql');
-            if (!$sql) throw new RuntimeException('sql/install.sql okunamadı.');
+            // 2) SQL şeması (buffered query pattern — unbuffered hataları önler)
+            $sqlFile = __DIR__ . '/sql/install.sql';
+            if (!is_file($sqlFile)) throw new RuntimeException('sql/install.sql okunamadı.');
 
-            // çok satırlı comment'leri temizle
-            $clean = preg_replace('/--[^\n]*\n/', "\n", $sql);
-            $ifadeler = array_filter(array_map('trim', explode(';', $clean)));
-            foreach ($ifadeler as $q) {
-                if ($q === '' || str_starts_with($q, '/*')) continue;
-                db()->exec($q);
+            if (file_exists(__DIR__ . '/includes/migration.php')) {
+                require_once __DIR__ . '/includes/migration.php';
+                run_install_sql($sqlFile);
+                if (function_exists('run_php_migrations')) run_php_migrations();
+            } else {
+                // Fallback
+                $sql = file_get_contents($sqlFile);
+                $clean = preg_replace('/--[^\n]*\n/', "\n", $sql);
+                $ifadeler = array_filter(array_map('trim', explode(';', $clean)));
+                foreach ($ifadeler as $q) {
+                    if ($q === '' || str_starts_with($q, '/*')) continue;
+                    $stmt = db()->query($q);
+                    if ($stmt instanceof PDOStatement) $stmt->closeCursor();
+                }
             }
 
             // 3) İlk yönetici

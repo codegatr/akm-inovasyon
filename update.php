@@ -191,23 +191,37 @@ try {
     step('ok', $kopyalanan . ' dosya kopyalandı, ' . $atlanan . ' korunan dosya atlandı.');
 
     // -----------------------------------------------------------------
-    // 5) SQL migration
+    // 5) SQL migration (buffered query pattern ile — unbuffered hataları önler)
     // -----------------------------------------------------------------
     $sqlFile = ROOT_PATH . '/sql/install.sql';
     if (is_file($sqlFile)) {
         step('inf', 'SQL şeması uygulanıyor (idempotent)...');
-        $sql = file_get_contents($sqlFile);
-        if ($sql) {
-            // İfade başına çalıştır
-            $clean = preg_replace('/--[^\n]*\n/', "\n", $sql);
-            $ifadeler = array_filter(array_map('trim', explode(';', $clean)));
-            $ok = 0;
-            foreach ($ifadeler as $iq) {
-                if ($iq === '' || str_starts_with($iq, '/*')) continue;
-                try { db()->exec($iq); $ok++; }
-                catch (Throwable $e) { step('wrn', 'SQL uyarı: ' . substr($e->getMessage(), 0, 200)); }
+
+        // migration helper'ları mevcutsa kullan
+        if (file_exists(ROOT_PATH . '/includes/migration.php')) {
+            require_once ROOT_PATH . '/includes/migration.php';
+            [$ok, $warn] = run_install_sql($sqlFile);
+            if (function_exists('run_php_migrations')) run_php_migrations();
+            step('ok', "$ok SQL ifadesi uygulandı" . ($warn > 0 ? " ($warn atlandı)" : ''));
+        } else {
+            // Fallback: manuel loop
+            $sql = file_get_contents($sqlFile);
+            if ($sql) {
+                $clean = preg_replace('/--[^\n]*\n/', "\n", $sql);
+                $ifadeler = array_filter(array_map('trim', explode(';', $clean)));
+                $okCount = 0;
+                foreach ($ifadeler as $iq) {
+                    if ($iq === '' || str_starts_with($iq, '/*')) continue;
+                    try {
+                        $stmt = db()->query($iq);
+                        if ($stmt instanceof PDOStatement) $stmt->closeCursor();
+                        $okCount++;
+                    } catch (Throwable $e) {
+                        step('wrn', 'SQL uyarı: ' . substr($e->getMessage(), 0, 200));
+                    }
+                }
+                step('ok', $okCount . ' SQL ifadesi uygulandı.');
             }
-            step('ok', $ok . ' SQL ifadesi uygulandı.');
         }
     }
 

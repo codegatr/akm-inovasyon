@@ -1,5 +1,14 @@
 # Değişiklik Günlüğü
 
+## v1.0.5 — 2026-04-22
+
+### Düzeltildi
+- 🔧 **SQL Migration Uyarıları** — v1.0.3 → v1.0.4 güncellemesinde görünen `SQLSTATE[HY000]: 2014 Cannot execute queries while other unbuffered queries are active` uyarıları kaldırıldı.
+  - Sebep: `install.sql` içindeki prepared statement migration bloğu (`PREPARE...EXECUTE`), PDO'nun `emulate_prepares=false` moduyla çakışıyordu.
+  - Çözüm: `install.sql`'deki koşullu ALTER bloğu kaldırıldı; aynı migration artık `includes/migration.php` içinde PHP tarafında yapılıyor (information_schema check + koşullu ALTER).
+  - Tüm SQL execution'lar `query()` + `closeCursor()` pattern'ine geçti — unbuffered query hataları bir daha görülmeyecek.
+- `update.php`, `install.php` ve `includes/migration.php` ortak `safe_exec()` ve `run_install_sql()` helper'larını kullanıyor.
+
 ## v1.0.4 — 2026-04-22
 
 ### Değişti

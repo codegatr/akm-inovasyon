@@ -96,16 +96,6 @@ CREATE TABLE IF NOT EXISTS `akm_teklif` (
   KEY `idx_arsiv` (`arsivlendi_tarihi`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Migration (mevcut v1.0.2 kurulumları için): arsivlendi_tarihi yoksa ekle
-SET @col_check := (SELECT COUNT(*) FROM information_schema.COLUMNS
-                   WHERE TABLE_SCHEMA = DATABASE()
-                     AND TABLE_NAME = 'akm_teklif'
-                     AND COLUMN_NAME = 'arsivlendi_tarihi');
-SET @sql_mig := IF(@col_check = 0,
-    'ALTER TABLE `akm_teklif` ADD COLUMN `arsivlendi_tarihi` DATETIME DEFAULT NULL AFTER `gorulme_tarihi`, ADD KEY `idx_arsiv` (`arsivlendi_tarihi`)',
-    'SELECT 1');
-PREPARE stm FROM @sql_mig; EXECUTE stm; DEALLOCATE PREPARE stm;
-
 -- ---------------------------------------------------------------------
 -- Proforma Teklif Kalemleri
 -- ---------------------------------------------------------------------
