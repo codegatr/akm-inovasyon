@@ -40,9 +40,9 @@ $embed = (int)get_param('embed', 0) === 1;
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body {
   font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-  font-size: 10pt;
+  font-size: 9.5pt;
   color: #2d3748;
-  line-height: 1.55;
+  line-height: 1.5;
   background: #ececec;
   -webkit-print-color-adjust: exact; print-color-adjust: exact;
   font-feature-settings: "kern" 1, "liga" 1, "tnum" 1;
@@ -91,26 +91,26 @@ body.embed .page { margin: 0 auto; box-shadow: none; }
 
 .hdr-firma { min-width: 0; }
 .hdr-firma .ad {
-  font-size: 11pt; font-weight: 600; color: #1b3a6b;
-  line-height: 1.3; margin-bottom: 4px;
+  font-size: 10.5pt; font-weight: 600; color: #1b3a6b;
+  line-height: 1.3; margin-bottom: 3px;
 }
 .hdr-firma .sub {
-  font-size: 8.5pt; color: #475569; line-height: 1.5;
+  font-size: 8pt; color: #475569; line-height: 1.5;
 }
 
 .hdr-doc { text-align: right; flex-shrink: 0; margin-left: 20px; }
 .hdr-doc .kind {
-  font-size: 8pt; color: #64748b;
+  font-size: 7.5pt; color: #64748b;
   letter-spacing: 2.5px; text-transform: uppercase;
-  font-weight: 600; margin-bottom: 4px;
+  font-weight: 600; margin-bottom: 3px;
 }
 .hdr-doc .num {
-  font-size: 16pt; font-weight: 600; color: #1a1a2e;
+  font-size: 14pt; font-weight: 600; color: #1a1a2e;
   letter-spacing: .5px; line-height: 1.2;
   font-variant-numeric: tabular-nums;
 }
 .hdr-doc .dates {
-  margin-top: 10px; font-size: 8.5pt; color: #475569;
+  margin-top: 8px; font-size: 8pt; color: #475569;
   line-height: 1.6;
 }
 .hdr-doc .dates .lb { color: #64748b; margin-right: 4px; }
@@ -121,35 +121,35 @@ body.embed .page { margin: 0 auto; box-shadow: none; }
   display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
   margin-bottom: 18px;
 }
-.party-card { font-size: 9.5pt; }
+.party-card { font-size: 9pt; }
 .party-card .hd {
-  font-size: 7.5pt; font-weight: 700; color: #1b3a6b;
+  font-size: 7pt; font-weight: 700; color: #1b3a6b;
   letter-spacing: 2px; text-transform: uppercase;
-  margin-bottom: 8px; padding-bottom: 6px;
+  margin-bottom: 7px; padding-bottom: 5px;
   border-bottom: 1pt solid #94a3b8;
 }
 .party-card .firma-ad {
-  font-size: 11.5pt; font-weight: 600; color: #1a1a2e;
-  margin-bottom: 6px; line-height: 1.35;
+  font-size: 10.5pt; font-weight: 600; color: #1a1a2e;
+  margin-bottom: 5px; line-height: 1.35;
 }
 .party-card .line {
-  font-size: 9pt; color: #334155; line-height: 1.6;
+  font-size: 8.5pt; color: #334155; line-height: 1.6;
 }
 .party-card .line .lb {
-  color: #64748b; display: inline-block; min-width: 52px;
-  font-size: 8.5pt; font-weight: 600;
+  color: #64748b; display: inline-block; min-width: 48px;
+  font-size: 8pt; font-weight: 600;
 }
 
 /* === Teklif Meta (ince satır) === */
 .meta-strip {
-  display: flex; gap: 24px; margin-bottom: 14px;
-  padding: 8px 0;
+  display: flex; gap: 22px; margin-bottom: 12px;
+  padding: 7px 0;
   border-top: 0.75pt solid #94a3b8;
   border-bottom: 0.75pt solid #94a3b8;
-  font-size: 9pt;
+  font-size: 8.5pt;
 }
 .meta-strip .item .lb {
-  color: #64748b; font-size: 8pt;
+  color: #64748b; font-size: 7.5pt;
   text-transform: uppercase; letter-spacing: 1px;
   margin-right: 6px; font-weight: 600;
 }
@@ -160,23 +160,23 @@ body.embed .page { margin: 0 auto; box-shadow: none; }
 /* === Kalemler Tablosu === */
 .items {
   width: 100%; border-collapse: collapse;
-  margin-bottom: 14px; font-size: 9.5pt;
+  margin-bottom: 12px; font-size: 9pt;
 }
 .items thead th {
-  padding: 9px 10px 9px 0;
+  padding: 9px 8px;
   text-align: left;
-  font-size: 7.5pt; font-weight: 700;
+  font-size: 7pt; font-weight: 700;
   color: #475569; letter-spacing: 1.5px;
   text-transform: uppercase;
   border-bottom: 1pt solid #64748b;
   background: none;
 }
-.items thead th.num { text-align: right; padding-right: 0; padding-left: 10px; }
+.items thead th.num { text-align: right; }
 .items thead th:first-child { padding-left: 4px; }
 .items thead th:last-child { padding-right: 4px; }
 
 .items tbody td {
-  padding: 8px 10px 8px 0; vertical-align: top;
+  padding: 7px 8px; vertical-align: top;
   border-bottom: 0.5pt solid #94a3b8;
 }
 .items tbody td:first-child { padding-left: 4px; }
@@ -184,79 +184,78 @@ body.embed .page { margin: 0 auto; box-shadow: none; }
 .items tbody tr:last-child td { border-bottom: 1pt solid #475569; }
 
 .items .sira {
-  color: #94a3b8; font-weight: 600; font-size: 9pt;
+  color: #94a3b8; font-weight: 600; font-size: 8.5pt;
   font-variant-numeric: tabular-nums;
 }
 .items .urun {
-  font-weight: 600; color: #1a1a2e; font-size: 10pt;
-  line-height: 1.4;
+  font-weight: 600; color: #1a1a2e; font-size: 9.5pt;
+  line-height: 1.35;
 }
 .items .aciklama {
-  font-size: 8.5pt; color: #475569;
+  font-size: 8pt; color: #475569;
   line-height: 1.5; margin-top: 2px;
 }
 .items td.num {
   text-align: right; white-space: nowrap;
   font-variant-numeric: tabular-nums;
-  padding-left: 10px; padding-right: 0;
   color: #334155;
 }
 .items td.tutar { font-weight: 600; color: #1a1a2e; }
 
 /* === Toplamlar === */
 .sum-wrap {
-  display: flex; justify-content: flex-end; margin: 6px 0 16px;
+  display: flex; justify-content: flex-end; margin: 6px 0 14px;
 }
 .sum {
-  min-width: 300px; border-collapse: collapse;
+  min-width: 290px; border-collapse: collapse;
 }
 .sum td {
-  padding: 3px 0; font-size: 10pt; vertical-align: middle;
+  padding: 3px 0; font-size: 9.5pt; vertical-align: middle;
 }
-.sum td.lb { color: #475569; padding-right: 24px; }
+.sum td.lb { color: #475569; padding-right: 22px; }
 .sum td.vl {
   text-align: right; color: #1a1a2e;
   font-variant-numeric: tabular-nums;
 }
 
 .sum tr.kdv-satir td {
-  font-size: 9pt; color: #475569; padding: 3px 0;
+  font-size: 8.5pt; color: #475569; padding: 3px 0;
 }
 .sum tr.kdv-satir td.lb { padding-left: 14px; }
 .sum tr.kdv-matrah td {
-  font-size: 7.5pt; color: #64748b;
+  font-size: 7pt; color: #64748b;
   padding: 0 0 3px 14px; font-style: italic;
 }
 
 .sum tr.kdv-total td {
-  font-size: 10pt; font-weight: 600; color: #334155;
+  font-size: 9.5pt; font-weight: 600; color: #334155;
   padding-top: 4px;
   border-top: 0.5pt solid #94a3b8;
 }
 
-.sum tr.spacer td { padding: 5px 0; }
+.sum tr.spacer td { padding: 4px 0; }
 
 .sum tr.grand td {
-  font-size: 13pt; font-weight: 700;
-  color: #1b3a6b; padding: 9px 0 3px;
+  font-size: 12pt; font-weight: 700;
+  color: #1b3a6b; padding: 8px 0 3px;
   border-top: 2pt solid #1b3a6b;
   border-bottom: 1pt solid #1b3a6b;
-  padding-bottom: 9px;
+  padding-bottom: 8px;
 }
 .sum tr.grand td.lb {
   letter-spacing: 1.5px; text-transform: uppercase;
-  font-size: 9pt; color: #1b3a6b; font-weight: 700;
+  font-size: 8.5pt; color: #1b3a6b; font-weight: 700;
 }
-.sum tr.grand td.vl { font-size: 14pt; }
+.sum tr.grand td.vl { font-size: 13pt; }
 
 /* === Notlar / Şartlar === */
 .note {
-  margin-bottom: 10px; padding-left: 12px;
+  margin-bottom: 9px; padding-left: 11px;
   border-left: 2pt solid #94a3b8;
-  font-size: 9pt; line-height: 1.6; color: #334155;
+  font-size: 8.5pt; line-height: 1.55; color: #334155;
 }
 .note .hd {
-  font-size: 7.5pt; font-weight: 700; color: #1b3a6b;
+  font-size: 7pt; font-weight: 700; color: #1b3a6b;
   letter-spacing: 2px; text-transform: uppercase;
   margin-bottom: 4px;
 }
@@ -264,23 +263,23 @@ body.embed .page { margin: 0 auto; box-shadow: none; }
 
 /* === Banka === */
 .bank-block {
-  margin: 12px 0 6px; padding: 10px 14px;
+  margin: 10px 0 5px; padding: 9px 13px;
   background: #f1f5f9; border-radius: 3px;
   border: 0.75pt solid #94a3b8;
-  font-size: 9pt;
+  font-size: 8.5pt;
 }
 .bank-block .hd {
-  font-size: 7.5pt; font-weight: 700; color: #1b3a6b;
+  font-size: 7pt; font-weight: 700; color: #1b3a6b;
   letter-spacing: 2px; text-transform: uppercase;
-  margin-bottom: 7px;
+  margin-bottom: 6px;
 }
-.bank-row { padding: 5px 0; line-height: 1.55; color: #334155; }
+.bank-row { padding: 4px 0; line-height: 1.5; color: #334155; }
 .bank-row + .bank-row {
   border-top: 0.5pt solid #cbd5e1; margin-top: 2px;
 }
-.bank-row .banka-ad { font-weight: 700; color: #1a1a2e; font-size: 10pt; }
-.bank-row .sube { color: #475569; font-size: 8.5pt; font-weight: normal; }
-.bank-row .lb { color: #64748b; font-size: 8.5pt; margin-right: 4px; font-weight: 600; }
+.bank-row .banka-ad { font-weight: 700; color: #1a1a2e; font-size: 9.5pt; }
+.bank-row .sube { color: #475569; font-size: 8pt; font-weight: normal; }
+.bank-row .lb { color: #64748b; font-size: 8pt; margin-right: 4px; font-weight: 600; }
 .bank-row .iban, .bank-row .swift {
   font-family: 'SF Mono', 'Consolas', 'Menlo', monospace;
   font-weight: 600; color: #1b3a6b; letter-spacing: .5px;
@@ -288,28 +287,28 @@ body.embed .page { margin: 0 auto; box-shadow: none; }
 
 /* === İmza === */
 .signatures {
-  margin-top: 28px; padding-top: 0;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+  margin-top: 24px; padding-top: 0;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 36px;
 }
 .sig-col {
-  text-align: center; padding-top: 6px;
+  text-align: center; padding-top: 5px;
   border-top: 1pt solid #475569;
 }
 .sig-col .role {
-  font-size: 7.5pt; color: #64748b;
+  font-size: 7pt; color: #64748b;
   letter-spacing: 2px; text-transform: uppercase;
   margin-bottom: 2px; font-weight: 600;
 }
 .sig-col .name {
-  font-size: 9.5pt; font-weight: 600; color: #1a1a2e;
+  font-size: 9pt; font-weight: 600; color: #1a1a2e;
 }
 
 /* === Footer === */
 .footer {
-  margin-top: 14px; padding-top: 10px;
+  margin-top: 12px; padding-top: 9px;
   border-top: 0.5pt solid #94a3b8;
-  text-align: center; font-size: 7.5pt; color: #64748b;
-  line-height: 1.55;
+  text-align: center; font-size: 7pt; color: #64748b;
+  line-height: 1.5;
 }
 
 /* === Aksiyonlar === */
@@ -429,14 +428,14 @@ body.embed .page { margin: 0 auto; box-shadow: none; }
   <table class="items">
     <thead>
       <tr>
-        <th style="width:24px">#</th>
+        <th style="width:22px">#</th>
         <th>Ürün / Hizmet</th>
-        <th class="num" style="width:70px">Miktar</th>
-        <th style="width:46px">Birim</th>
-        <th class="num" style="width:86px">B. Fiyat</th>
-        <?php if ($hasIsk): ?><th class="num" style="width:48px">İsk.</th><?php endif; ?>
-        <th class="num" style="width:42px">KDV</th>
-        <th class="num" style="width:110px">Tutar</th>
+        <th class="num" style="width:72px">Miktar</th>
+        <th style="width:50px">Birim</th>
+        <th class="num" style="width:82px">B. Fiyat</th>
+        <?php if ($hasIsk): ?><th class="num" style="width:46px">İsk.</th><?php endif; ?>
+        <th class="num" style="width:46px">KDV</th>
+        <th class="num" style="width:100px">Tutar</th>
       </tr>
     </thead>
     <tbody>

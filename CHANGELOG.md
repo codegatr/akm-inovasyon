@@ -1,5 +1,21 @@
 # Değişiklik Günlüğü
 
+## v1.0.12 — 2026-04-22
+
+### Düzeltildi / Değişti
+- 📏 **Miktar ↔ Birim Boşluğu** — "4.401,00KG" gibi birleşik görünen hücreler ayrıldı. Tablo hücre padding'i her iki yana 8px uniform hale getirildi. Artık "4.401,00  KG" şeklinde okunur görünüyor.
+- 🔠 **Yazı Boyutları %10 Küçüldü** — Genel tasarım daha zarif ve az yer kaplar hale geldi:
+  - Gövde: 10pt → 9.5pt
+  - Teklif numarası (header sağ): 16pt → 14pt
+  - Müşteri/Satıcı kart başlığı: 11.5pt → 10.5pt
+  - Ürün adı: 10pt → 9.5pt
+  - Ara Toplam/KDV satırları: 10pt → 9.5pt
+  - **GENEL TOPLAM**: 13/14pt → 12/13pt (hâlâ belirgin)
+  - Tablo başlıkları: 7.5pt → 7pt
+  - Notlar/banka: 9pt → 8.5pt
+  - İmza isimleri: 9.5pt → 9pt
+- Tablo kolon genişlikleri de buna göre dengelendi (Miktar 70→72px, Birim 46→50px)
+
 ## v1.0.11 — 2026-04-22
 
 ### Değişti
