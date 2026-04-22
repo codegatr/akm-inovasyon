@@ -1,5 +1,22 @@
 # Değişiklik Günlüğü
 
+## v1.0.4 — 2026-04-22
+
+### Değişti
+- 🎨 **Kurumsal PDF Redesignı** — Teklif PDF çıktısı tamamen yeniden tasarlandı:
+  - Üstte lacivert + turkuaz renkli ince şerit
+  - Lacivert şeritli üst bant, logo solda
+  - "Satıcı" ve "Müşteri" kartları yan yana, temiz tipografi
+  - Lacivert başlıklı kalemler tablosu (büyük/küçük harf dengeli, tabular rakamlar)
+  - KDV dağılımı için ayrı matrah satırları (daha okunur)
+  - **GENEL TOPLAM** artık lacivert zemin üzerinde beyaz — belgede göze çarpıyor
+  - Banka bilgileri için dekore edilmiş blok
+  - Sağlam alt bant: Düzenleyen / Müşteri Kaşe-İmza alanları
+  - İnce sayfa kenar boşlukları, A4 yazdırma optimizasyonu
+- 🔘 **Liste Butonları Temizlendi** — Emoji ikonlar (kimi tarayıcıda daire/kutu olarak görünüyordu) kaldırıldı, yerlerine okunaklı yazı etiketleri geldi:
+  - Aç / Düzenle / **PDF** (mavi) / **Mail** (turkuaz) / **Arşiv** (turuncu) / **Sil** (kırmızı)
+- Yeni CSS sınıfı: `.btn-warn` (amber/turuncu buton, Arşiv için)
+
 ## v1.0.3 — 2026-04-22
 
 ### Eklendi

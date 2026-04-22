@@ -205,24 +205,24 @@ $cariler = db()->query('SELECT id, firma_adi FROM ' . tbl('cari') . ' WHERE akti
             <td class="cen actions-tight">
               <a class="btn btn-ghost btn-xs" href="yonetim.php?sayfa=teklif_goruntule&id=<?= (int)$t['id'] ?>" title="Aç">Aç</a>
               <?php if (!$arsiv): ?>
-                <a class="btn btn-ghost btn-xs" href="yonetim.php?sayfa=teklif_form&id=<?= (int)$t['id'] ?>" title="Düzenle">✏️</a>
+                <a class="btn btn-ghost btn-xs" href="yonetim.php?sayfa=teklif_form&id=<?= (int)$t['id'] ?>" title="Düzenle">Düzenle</a>
               <?php endif; ?>
-              <a class="btn btn-primary btn-xs" href="yonetim.php?sayfa=teklif_pdf&id=<?= (int)$t['id'] ?>&auto=1" target="_blank" title="PDF olarak indir">📄 PDF</a>
+              <a class="btn btn-primary btn-xs" href="yonetim.php?sayfa=teklif_pdf&id=<?= (int)$t['id'] ?>&auto=1" target="_blank" title="PDF olarak indir / yazdır">PDF</a>
               <?php if (!$arsiv): ?>
-                <a class="btn btn-accent btn-xs" href="yonetim.php?sayfa=teklif_gonder&id=<?= (int)$t['id'] ?>" title="E-posta ile gönder">📧</a>
+                <a class="btn btn-accent btn-xs" href="yonetim.php?sayfa=teklif_gonder&id=<?= (int)$t['id'] ?>" title="E-posta ile gönder">Mail</a>
                 <form method="post" style="display:inline">
                   <?= csrf_field() ?>
                   <input type="hidden" name="islem" value="arsivle">
                   <input type="hidden" name="id" value="<?= (int)$t['id'] ?>">
-                  <button type="submit" class="btn btn-ghost btn-xs" title="Arşive kaldır"
-                          data-confirm="<?= e($t['teklif_no']) ?> arşive kaldırılsın mı?">📦</button>
+                  <button type="submit" class="btn btn-warn btn-xs" title="Arşive kaldır"
+                          data-confirm="<?= e($t['teklif_no']) ?> arşive kaldırılsın mı?">Arşiv</button>
                 </form>
               <?php else: ?>
                 <form method="post" style="display:inline">
                   <?= csrf_field() ?>
                   <input type="hidden" name="islem" value="arsivden_cikar">
                   <input type="hidden" name="id" value="<?= (int)$t['id'] ?>">
-                  <button type="submit" class="btn btn-accent btn-xs" title="Arşivden çıkar">↩ Geri Al</button>
+                  <button type="submit" class="btn btn-accent btn-xs" title="Arşivden çıkar">Geri Al</button>
                 </form>
               <?php endif; ?>
               <form method="post" style="display:inline">
@@ -230,7 +230,7 @@ $cariler = db()->query('SELECT id, firma_adi FROM ' . tbl('cari') . ' WHERE akti
                 <input type="hidden" name="islem" value="sil">
                 <input type="hidden" name="id" value="<?= (int)$t['id'] ?>">
                 <button type="submit" class="btn btn-danger btn-xs" title="Kalıcı sil"
-                        data-confirm="<?= e($t['teklif_no']) ?> KALICI olarak silinsin mi?">🗑️</button>
+                        data-confirm="<?= e($t['teklif_no']) ?> KALICI olarak silinsin mi?">Sil</button>
               </form>
             </td>
           </tr>

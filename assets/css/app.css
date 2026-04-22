@@ -388,6 +388,8 @@ input.fi:focus, select.fi:focus, textarea.fi:focus {
 .btn-success:hover { background: #15803d; }
 .btn-danger    { background: var(--danger); color: #fff; }
 .btn-danger:hover  { background: #b91c1c; }
+.btn-warn      { background: #d97706; color: #fff; }
+.btn-warn:hover    { background: #b45309; }
 .btn-warn      { background: var(--warn); color: #fff; }
 .btn-ghost     { background: transparent; border-color: var(--border); color: var(--text-2); }
 .btn-ghost:hover { background: #f8fafc; border-color: var(--text-2); }
