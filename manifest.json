@@ -1,0 +1,34 @@
+{
+  "name": "AKM İnovasyon - Cari & Proforma Teklif Sistemi",
+  "slug": "akm-inovasyon",
+  "version": "1.0.3",
+  "author": "CODEGA",
+  "homepage": "https://akm.tekcanmetal.com",
+  "repo": "codegatr/akm-inovasyon",
+  "requires": {
+    "php":   "8.3",
+    "mysql": "5.7",
+    "ext":   ["pdo_mysql", "openssl", "curl", "zip", "mbstring"]
+  },
+  "preserved_paths": [
+    "config.php",
+    "uploads",
+    "install.php",
+    ".htaccess.local"
+  ],
+  "entry": {
+    "public":  "index.php",
+    "admin":   "yonetim.php",
+    "update":  "update.php",
+    "install": "install.php"
+  },
+  "features": [
+    "Cari Yönetimi (Müşteri/Tedarikçi)",
+    "Proforma Teklif (TRY/USD/EUR)",
+    "Gmail SMTP ile E-posta Gönderimi",
+    "GitHub Releases ZIP Updater",
+    "Kullanıcı Yönetimi & Rol (admin/kullanici)",
+    "İşlem Günlüğü",
+    "Public Teklif Görüntüleme (Token)"
+  ]
+}

@@ -1,0 +1,55 @@
+Options -Indexes -MultiViews
+DirectoryIndex index.php
+
+# --- Charset ---
+AddDefaultCharset UTF-8
+
+# --- HTTPS Yönlendirme (DirectAdmin/LiteSpeed) ---
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} off
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# --- Hassas Dosyaları Koru ---
+<FilesMatch "(?i)^(config\.php|config\.sample\.php|\.env|\.git.*|composer\.json|composer\.lock|manifest\.json|README\.md|CHANGELOG\.md)$">
+  Require all denied
+</FilesMatch>
+
+# --- Belirli Dizinlere Erişimi Engelle ---
+RedirectMatch 404 /\.git
+RedirectMatch 404 /sql/
+RedirectMatch 404 /includes/
+RedirectMatch 404 /lib/
+
+# --- Güvenlik Başlıkları ---
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), camera=(), microphone=()"
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains" "expr=%{HTTPS} == 'on'"
+</IfModule>
+
+# --- MIME Type / Gzip ---
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/json application/javascript
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css            "access plus 7 days"
+  ExpiresByType application/javascript "access plus 7 days"
+  ExpiresByType image/png           "access plus 30 days"
+  ExpiresByType image/jpeg          "access plus 30 days"
+  ExpiresByType image/svg+xml       "access plus 30 days"
+</IfModule>
+
+# --- php_value (shared hosting uyumlu) ---
+<IfModule mod_php.c>
+  php_value upload_max_filesize 16M
+  php_value post_max_size       20M
+  php_value max_execution_time  300
+  php_flag  display_errors      off
+</IfModule>
