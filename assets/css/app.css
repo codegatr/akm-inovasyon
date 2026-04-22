@@ -503,11 +503,27 @@ table.kalem-tbl .num { text-align: right; }
 /* Geçerlilik tarihi + gün grubu */
 .date-gun-grup { display: flex; gap: 6px; align-items: stretch; }
 .date-gun-grup input[type="date"] { flex: 1; min-width: 0; }
+.date-gun-grup input[type="text"].manuel-tarih {
+  width: 110px; flex-shrink: 0; text-align: center;
+  font-variant-numeric: tabular-nums;
+}
 .date-gun-grup input[type="number"] {
   width: 72px; flex-shrink: 0; text-align: right;
   background: #f8fafc;
 }
 .date-gun-grup input[type="number"]::placeholder { color: #94a3b8; }
+
+/* Teklif PDF önizleme (admin görüntüleme sayfasında iframe) */
+.teklif-preview-wrap {
+  margin-top: 16px; padding: 0;
+  background: #e5e7eb; border-radius: var(--radius-sm);
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,.04);
+}
+.teklif-preview-iframe {
+  display: block; width: 100%; min-height: 900px;
+  border: 0; background: #e5e7eb;
+}
 
 /* Yüklü logo (teklif doc) */
 .logo-img {

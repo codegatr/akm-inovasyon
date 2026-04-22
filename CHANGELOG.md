@@ -1,5 +1,26 @@
 # Değişiklik Günlüğü
 
+## v1.0.11 — 2026-04-22
+
+### Değişti
+- 🖼️ **Admin Görüntüleme = PDF Çıktısı (Birebir)** — "Aç" butonuyla açılan teklif görüntüleme sayfası artık gerçek PDF'in embed edilmiş hali. Ekranda gördüğün = yazdıracağın. Tasarım farklılığı kalmadı.
+  - `modules/teklif_goruntule.php` artık `<iframe>` ile `teklif_pdf.php?embed=1` yüklüyor
+  - Admin aksiyonları (Listeye, Düzenle, PDF/Yazdır, Mail, Müşteri Linki) üstte kart halinde
+  - Iframe yüksekliği içeriğe göre otomatik ayarlanıyor
+  - Gönderim geçmişi de ayrı bir kartta alt kısımda
+  - `teklif_pdf.php`'ye `?embed=1` parametresi: buton paneli gizleniyor, box-shadow kaldırılıyor
+  
+### Eklendi
+- 📝 **Manuel Tarih Yazma Alanı** — Geçerlilik tarihi alanında date picker ile gün sayısı arasına text input eklendi (`GG.AA.YYYY` formatı):
+  - "29.05.2026" gibi doğrudan yazılabilir
+  - 8 haneli rakam girilince otomatik nokta ekleniyor (29052026 → 29.05.2026)
+  - Enter / blur → anında parse edip diğer alanları senkronize ediyor
+  - 2 haneli yıl desteği (26 → 2026)
+  - `.`, `/`, `-` ayraçları kabul ediliyor
+  - Geçersiz format girilirse sessizce orijinal değere dönüyor
+
+Üç yönlü senkronizasyon: **date picker ↔ manuel text ↔ gün sayısı** — birini değiştir, diğer ikisi otomatik güncellenir.
+
 ## v1.0.10 — 2026-04-22
 
 ### Eklendi

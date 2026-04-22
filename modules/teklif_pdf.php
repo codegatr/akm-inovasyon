@@ -27,6 +27,7 @@ foreach ($kalemler as $kk) { if ((float)$kk['iskonto_orani'] > 0) { $hasIsk = tr
 $kdvBD = kdv_dagilimi($kalemler, (float)$t['iskonto_orani']);
 $bankalar = banka_hesaplari($pb);
 $logo = sirket_logo();
+$embed = (int)get_param('embed', 0) === 1;
 ?><!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -53,6 +54,10 @@ html, body {
   padding: 14mm 18mm 12mm; position: relative;
   border-top: 3pt solid #1b3a6b;
 }
+
+/* Embed (iframe içinde) modunda temiz gösterim */
+body.embed { background: #fff; }
+body.embed .page { margin: 0 auto; box-shadow: none; }
 
 @media print {
   html, body { background: #fff; }
@@ -324,12 +329,14 @@ html, body {
 .actions button:hover { opacity: .92; }
 </style>
 </head>
-<body>
+<body<?= $embed ? ' class="embed"' : '' ?>>
 
+<?php if (!$embed): ?>
 <div class="actions">
   <button onclick="window.print()">PDF Olarak Kaydet</button>
   <button class="ghost" onclick="window.close()">Kapat</button>
 </div>
+<?php endif; ?>
 
 <div class="page">
   <div class="top-line"></div>

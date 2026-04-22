@@ -289,17 +289,17 @@
     }
   });
   // -------------------------------------------------------------------
-  // Geçerlilik tarihi <-> Gün sayısı çift yönlü senkronizasyon
+  // Geçerlilik tarihi <-> Manuel metin <-> Gün sayısı (üç yönlü sync)
   // -------------------------------------------------------------------
-  const tarihInput      = document.querySelector('[name="tarih"]');
-  const gecerlilikInput = document.getElementById('gecerlilik_tarihi');
-  const gunInput        = document.getElementById('gecerlilik_gun');
+  const tarihInput       = document.querySelector('[name="tarih"]');
+  const gecerlilikInput  = document.getElementById('gecerlilik_tarihi');
+  const manuelInput      = document.getElementById('gecerlilik_manuel');
+  const gunInput         = document.getElementById('gecerlilik_gun');
 
   if (tarihInput && gecerlilikInput && gunInput) {
     function diffDays(d1, d2) {
       const a = new Date(d1);
       const b = new Date(d2);
-      // UTC bazlı hesap — saat dilimi kayması önlenir
       const utcA = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
       const utcB = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
       return Math.round((utcB - utcA) / 86400000);
@@ -308,46 +308,105 @@
     function addDays(dstr, days) {
       const d = new Date(dstr);
       d.setDate(d.getDate() + parseInt(days, 10));
-      // yyyy-mm-dd formatı
       const y = d.getFullYear();
       const m = String(d.getMonth() + 1).padStart(2, '0');
       const dd = String(d.getDate()).padStart(2, '0');
       return `${y}-${m}-${dd}`;
     }
 
-    // İlk yüklemede mevcut tarihlerden gün sayısını çıkar
-    function syncGunFromDates() {
-      if (tarihInput.value && gecerlilikInput.value) {
+    // ISO (YYYY-MM-DD) -> GG.AA.YYYY
+    function isoToTr(iso) {
+      if (!iso) return '';
+      const p = iso.split('-');
+      if (p.length !== 3) return '';
+      return `${p[2]}.${p[1]}.${p[0]}`;
+    }
+
+    // GG.AA.YYYY veya GG/AA/YYYY veya GG-AA-YYYY -> ISO
+    function trToIso(tr) {
+      if (!tr) return '';
+      // Sadece rakam + .,/,- kabul et
+      const s = tr.replace(/[^\d.\/\-]/g, '');
+      const parts = s.split(/[.\/\-]/).filter(Boolean);
+      if (parts.length !== 3) return '';
+      let [d, m, y] = parts;
+      if (y.length === 2) y = '20' + y; // 26 -> 2026
+      if (d.length > 2 || m.length > 2 || y.length !== 4) return '';
+      d = d.padStart(2, '0'); m = m.padStart(2, '0');
+      // Geçerli tarih mi?
+      const test = new Date(`${y}-${m}-${d}`);
+      if (isNaN(test.getTime())) return '';
+      if (test.getFullYear() != y || (test.getMonth() + 1) != parseInt(m, 10) || test.getDate() != parseInt(d, 10)) return '';
+      return `${y}-${m}-${d}`;
+    }
+
+    function syncAll(source) {
+      // Tüm alanları güncel tarihe göre senkronize eder.
+      // source: 'date' | 'manuel' | 'gun' | 'tarih' | 'init'
+      if (!gecerlilikInput.value) return;
+      if (manuelInput) manuelInput.value = isoToTr(gecerlilikInput.value);
+      if (tarihInput.value) {
         const diff = diffDays(tarihInput.value, gecerlilikInput.value);
-        gunInput.value = diff >= 0 ? diff : '';
-      } else {
-        gunInput.value = '';
+        if (gunInput) gunInput.value = diff >= 0 ? diff : '';
       }
     }
-    syncGunFromDates();
 
-    // Gün alanına yazınca geçerlilik tarihini güncelle
+    syncAll('init');
+
+    // Native date picker değişirse
+    gecerlilikInput.addEventListener('change', function () { syncAll('date'); });
+
+    // Manuel text değişirse parse et, geçerli ise date picker'a yaz
+    if (manuelInput) {
+      manuelInput.addEventListener('blur', function () {
+        const iso = trToIso(manuelInput.value);
+        if (iso) {
+          gecerlilikInput.value = iso;
+          syncAll('manuel');
+        } else if (manuelInput.value.trim() !== '') {
+          // Geçersizse orijinale geri dön, sessizce düzelt
+          manuelInput.value = isoToTr(gecerlilikInput.value);
+        }
+      });
+      manuelInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') { e.preventDefault(); manuelInput.blur(); }
+      });
+      // Yazarken noktayı otomatik ekleme (GGAAYYYY -> GG.AA.YYYY)
+      manuelInput.addEventListener('input', function () {
+        let v = manuelInput.value.replace(/[^\d.\/\-]/g, '');
+        // Sadece rakam girildiyse ve 8 haneye ulaştıysa otomatik formatla
+        const onlyDigits = v.replace(/\D/g, '');
+        if (v === onlyDigits && onlyDigits.length === 8) {
+          v = onlyDigits.slice(0, 2) + '.' + onlyDigits.slice(2, 4) + '.' + onlyDigits.slice(4);
+          manuelInput.value = v;
+          // Otomatik tetikleme
+          const iso = trToIso(v);
+          if (iso) { gecerlilikInput.value = iso; syncAll('manuel'); }
+        }
+      });
+    }
+
+    // Gün sayısı değişirse: teklif tarihi + gün
     gunInput.addEventListener('input', function () {
       if (!tarihInput.value || gunInput.value === '') return;
       const days = parseInt(gunInput.value, 10);
       if (!isNaN(days) && days >= 0) {
         gecerlilikInput.value = addDays(tarihInput.value, days);
+        if (manuelInput) manuelInput.value = isoToTr(gecerlilikInput.value);
       }
     });
 
-    // Geçerlilik tarihi manuel değişirse gün alanını yenile
-    gecerlilikInput.addEventListener('change', syncGunFromDates);
-
-    // Teklif tarihi değişirse: gün sabit kalsın, geçerlilik yeniden hesaplansın
+    // Teklif tarihi değişirse: gün sabit, geçerlilik yenilenir
     tarihInput.addEventListener('change', function () {
       if (gunInput.value !== '' && tarihInput.value) {
         const days = parseInt(gunInput.value, 10);
         if (!isNaN(days) && days >= 0) {
           gecerlilikInput.value = addDays(tarihInput.value, days);
+          if (manuelInput) manuelInput.value = isoToTr(gecerlilikInput.value);
+          return;
         }
-      } else {
-        syncGunFromDates();
       }
+      syncAll('tarih');
     });
   }
 
