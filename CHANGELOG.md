@@ -1,5 +1,10 @@
 # Değişiklik Günlüğü
 
+## v1.0.8 — 2026-04-22
+
+### Düzeltildi
+- 🪟 **Güncelleme Aynı Sekmede** — "Güncelle" butonu artık yeni sekme açmıyor; mevcut pencerede çalışıyor. İşlem bittiğinde "Panele Git" butonuyla geri dönülüyor.
+
 ## v1.0.7 — 2026-04-22
 
 ### Düzeltildi

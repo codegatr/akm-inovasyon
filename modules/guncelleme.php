@@ -129,7 +129,7 @@ if (!$k['ok']) {
         </div>
       <?php endif; ?>
 
-      <form method="post" action="update.php" target="_blank">
+      <form method="post" action="update.php">
         <?= csrf_field() ?>
         <input type="hidden" name="versiyon" value="<?= e($guncelBilgi['tag']) ?>">
         <input type="hidden" name="zip_url"  value="<?= e($guncelBilgi['zip_url']) ?>">
