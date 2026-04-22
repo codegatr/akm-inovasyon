@@ -1,5 +1,21 @@
 # Değişiklik Günlüğü
 
+## v1.0.6 — 2026-04-22
+
+### Değişti
+- 🎨 **PDF Tasarım — Nazik Versiyon** — Önceki v1.0.4 kurumsal tasarımı "çok sert" bulunduğu için tüm çıktı yeniden dizayn edildi:
+  - Koyu lacivert banlar kaldırıldı (üst ribbon, GENEL TOPLAM kutusu, footer bandı)
+  - Yerini ince çizgiler ve ferah tipografi aldı
+  - Üstte sadece 3px ince gradient çizgi (%75 lacivert + %25 turkuaz)
+  - Taraflar kartları artık kutu içinde değil; küçük turkuaz başlıklı açık satırlarla
+  - Tablo başlıkları lacivert zemin yerine gri tipografi (harf aralığı geniş, küçük punto)
+  - GENEL TOPLAM koyu kutu değil, üstü-altı lacivert hairline + büyük lacivert punto
+  - Banka bölümü beyaz kart + gri border (karanlık blok değil)
+  - İmza çizgileri ince, rol etiketleri küçük letter-spaced
+  - Footer koyu bant değil, ortalanmış muted gri text
+  - Yazı tipi özellikleri: kerning + ligatures + tabular rakamlar açık
+  - Genel hava: "kurumsal banka teklifine" benzer — bizim stil
+
 ## v1.0.5 — 2026-04-22
 
 ### Düzeltildi
